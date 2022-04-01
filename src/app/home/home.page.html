@@ -1,20 +1,47 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Blank
+      Iniciar Sesión
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+  <form [formGroup]="formLogin">
+    <ion-row>
+      <ion-col size="12">
+        <ion-item>
+          <ion-label position="floating">Username:</ion-label>
+          <ion-input formControlName="username" type="text"></ion-input>
+        </ion-item>
+        <div class="">
+          <ng-container *ngFor="let val of validationMessages['username']">
+            <div class="" *ngIf="formLogin.get('username').hasError(val.type)&&(formLogin.get('username').dirty || formLogin.get('username').touched)" >
+              {{val.message}}
+            </div>
+          </ng-container>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12">
+        <ion-item>
+          <ion-label position="floating">Password:</ion-label>
+          <ion-input formControlName="password" type="password"></ion-input>
+        </ion-item>
+        <div class="">
+          <ng-container *ngFor="let val2 of validationMessages['password']">
+            <div class="" *ngIf="formLogin.get('password').hasError(val2.type)&&(formLogin.get('password').dirty || formLogin.get('password').touched)" >
+              {{val2.message}}
+            </div>
+          </ng-container>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12">
+          <ion-button expand="block">Entrar</ion-button>
+      </ion-col>
+    </ion-row>
+  </form>
 </ion-content>
